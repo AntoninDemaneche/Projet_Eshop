@@ -38,9 +38,9 @@ export default {
     },
     methods: {
         login:function(e){
-            firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
+            firebase.auth().signInWithEmailAndPassword(this.email, this.password)
             .then(user => {
-                alert(`Account created for ${user.email}`)
+                alert(`You are logged in as ${user.email}`)
                 this.$router.push('/dash');
             },
             err => {

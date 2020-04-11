@@ -1,5 +1,4 @@
 import Vue from "vue";
-import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Dashboard from "../components/Dashboard.vue";
 import NewEmployee from "../components/NewEmployee.vue";
@@ -12,78 +11,111 @@ import Register from '../components/Register';
 import * as firebase from "firebase/app";
 import "firebase/auth";
 
-Vue.use(VueRouter);
+Vue.use(Router);
 
-const routes = [
-  {
-    path: "/home",
-    name: "home",
-    component: Home
-  },
-  {
-    path: "/login",
-    name: "login",
-    component: Login
-  },
-  {
-    path: "/register",
-    name: "register",
-    component: Register
-  },
-  {
-    path: "/bordeaux",
-    name: "bordeaux",
-    component: Bordeaux
-  },
-  {
-    path: "/about",
-    name: "about",
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue")
-  },
-  {
-    path: "/dash",
-    name: "dashboard",
-    component: Dashboard
-  },
-  {
-    path: "/new",
-    name: "new-employee",
-    component: NewEmployee
-  },
-  {
-    path: "/view",
-    name: "view-employee",
-    component: ViewEmployee
-  },
-  {
-    path: "/edit/:employee_id",
-    name: "edit-employee",
-    component: EditEmployee
-  },
-  {
-    path: "/:employee_id",
-    name: "view-employee",
-    component: ViewEmployee
-  }
-  
-];
-
-const router = new VueRouter({
-  mode: "history",
-  base: process.env.BASE_URL,
-  routes
+let router = new router({
+ routes: [
+    {
+      path: "/home",
+      name: "home",
+      component: Home,
+      meta: {
+        requiresGuest: true
+      }
+    },
+    {
+      path: "/login",
+      name: "login",
+      component: Login,
+      meta: {
+        requiresGuest: true
+      }
+    },
+    {
+      path: "/register",
+      name: "register",
+      component: Register,
+      meta: {
+        requiresGuest: true
+      }
+    },
+    {
+      path: "/bordeaux",
+      name: "bordeaux",
+      component: Bordeaux,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/about",
+      name: "about",
+      component: () =>
+        import(/* webpackChunkName: "about" */ "../views/About.vue")
+    },
+    {
+      path: "/dash",
+      name: "dashboard",
+      component: Dashboard,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/new",
+      name: "new-employee",
+      component: NewEmployee,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/view",
+      name: "view-employee",
+      component: ViewEmployee,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/edit/:employee_id",
+      name: "edit-employee",
+      component: EditEmployee,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/:employee_id",
+      name: "view-employee",
+      component: ViewEmployee
+    }
+    
+    ]
 });
 
 router.beforeEach((to, from, next) => {
-  const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
-  const isAuthenticated = firebase.auth().currentUser;
-  console.log("isauthenticated", isAuthenticated);
-  if (requiresAuth && !isAuthenticated) {
-    next("/login");
-  } else {
-    next();
+  if(to.matched.some(record => record.meta.requiresAuth)) {
+    if(!firebase.auth().currentUser){
+      next({
+        path:'/login',
+        query: {
+          redirect: to.fullPath
+        }
+      })
+    } else {
+      next();
+    }
+  } else if(to.matched.some(record => record.meta.requiresGuest)) {
+    if(firebase.auth().currentUser){
+      next({
+        path:'/dash',
+        query: {
+          redirect: to.fullPath
+        }
+      })
+    } else {
+      next();
+    }
   }
-});
-
-export default router;
+})
