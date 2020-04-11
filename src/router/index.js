@@ -6,6 +6,7 @@ import NewEmployee from "../components/NewEmployee.vue";
 import ViewEmployee from "../components/ViewEmployee.vue";
 import EditEmployee from "../components/EditEmployee.vue";
 import Bordeaux from "../views/Bordeaux.vue";
+import City from "../views/City.vue";
 import Login from '../components/Login';
 import Register from '../components/Register';
 
@@ -44,6 +45,20 @@ let router = new Router({
       path: "/bordeaux",
       name: "bordeaux",
       component: Bordeaux,
+      meta: {
+        requiresGuest: true
+      }
+    },
+    {
+      path: "/city",
+      name: "city",
+      component: City,
+      props: true,
+    },
+    {
+      path: "/city",
+      name: "city",
+      component: City,
       meta: {
         requiresAuth: true
       }
@@ -97,28 +112,30 @@ let router = new Router({
 
 router.beforeEach((to, from, next) => {
   if(to.matched.some(record => record.meta.requiresAuth)) {
-    if(!firebase.auth().currentUser){
+    if(!firebase.auth().currentUser ){
       next({
         path:'/login',
         query: {
           redirect: to.fullPath
         }
-      })
+      });
     } else {
       next();
     }
   } else if(to.matched.some(record => record.meta.requiresGuest)) {
-    if(firebase.auth().currentUser){
+    if(firebase.auth().currentUser) {
       next({
         path:'/dash',
         query: {
           redirect: to.fullPath
         }
-      })
+      });
     } else {
       next();
     }
+  } else {
+    next();
   }
-})
+});
 
 export default router;
