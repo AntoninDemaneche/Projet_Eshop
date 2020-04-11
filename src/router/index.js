@@ -1,4 +1,5 @@
 import Vue from "vue";
+import Router from 'vue-router';
 import Home from "../views/Home.vue";
 import Dashboard from "../components/Dashboard.vue";
 import NewEmployee from "../components/NewEmployee.vue";
@@ -13,7 +14,7 @@ import "firebase/auth";
 
 Vue.use(Router);
 
-let router = new router({
+let router = new Router({
  routes: [
     {
       path: "/home",
@@ -119,3 +120,5 @@ router.beforeEach((to, from, next) => {
     }
   }
 })
+
+export default router;

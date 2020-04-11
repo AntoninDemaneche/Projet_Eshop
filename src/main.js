@@ -24,7 +24,6 @@ const firebaseConfig = {
   appId: "1:105671811530:web:1f6c3c0a1d4a36da5aef33"
 };
 
-
 firebase.initializeApp(firebaseConfig);
 export let db = firebase.firestore();
 let app;
@@ -33,7 +32,10 @@ firebase.auth().onAuthStateChanged(user => {
   console.log("user", user);
   if (!app) {
     app = new Vue({
+      el: '#app',
       router,
+      template: '<App/>',
+      components: { App },
       store,
       render: h => h(App)
     }).$mount("#app");
