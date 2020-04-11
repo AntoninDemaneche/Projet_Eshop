@@ -1,10 +1,9 @@
 <template>
-  <div>
-    Logged in
+  <div> 
     <div v-if="loggedIn">Yes</div>
     <div v-else>No</div>
     <button class="but" @click="signOut">Sign out</button>
-  </div>
+  </div >
 </template>
 
 <script>
@@ -46,8 +45,3 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-div {
-  color: inherit;
-}
-</style>

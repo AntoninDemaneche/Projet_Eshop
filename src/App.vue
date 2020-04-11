@@ -1,15 +1,13 @@
 <template>
   <div id="app">
-    <!-- <header></header> -->
-    <top-header></top-header>
-     <Navbar />
       <router-link to="/home">Home</router-link> |
       <router-link to="/about">About</router-link> |
       <router-link to="/register">Register</router-link> |
       <router-link to="/login">Login</router-link> |
       <router-link to="/secret">Secret</router-link> |
       <router-link to="/dash">dash</router-link>|
-      <router-link to="/bordeaux">Bordeaux</router-link>    
+      <router-link to="/bordeaux">Bordeaux</router-link> |
+      <top-header></top-header>
     <router-view />
   </div>
 </template>
@@ -23,11 +21,9 @@ export default {
   },
   data() {
     return {
-      blah: "erik"
     };
   },
 };
-
 
 
 

@@ -23,12 +23,14 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <input type="text" v-model="Position" required>
+                        <input type="text" v-model="position" required>
                         <label>Position:</label>
                     </div>
                 </div>
                 <button type="submit" class="btn">submit</button>
-                <router-link to="/" class="btn"></router-link>
+                <router-link to="/dash" class="btn"></router-link>
+            <router-link to="/dash" class="btn grey">Cancel</router-link>
+            
             </form>
         </div>
     </div>
@@ -57,7 +59,7 @@ export default {
             })
             .then(docRef => {
                 console.log('Client added: ', docRef.id)
-                this.$router.push('/')
+                this.$router.push('/dash')
             })
             .catch(error => {
                 console.log('Error adding eployee: ', error)

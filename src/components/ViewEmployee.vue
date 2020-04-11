@@ -5,15 +5,15 @@
                 </h4></li>
                 <li class="collection-item">Employee ID#:{{employee_id}}</li>
                 <li class="collection-item">Department: {{dept}}</li>
-                <li class="collection-item">Possition: {{position}}</li>
+                <li class="collection-item">Position: {{position}}</li>
         </ul>
-        <router-link to="/" class="btn grey">Back</router-link>
+        <router-link to="/dash" class="btn grey">Back</router-link>
         <button @click="deleteEmployee" class="btn red">Delete</button>
 
         <div class="fixe-actions-btn">
             <router-link v-bind:to="{name: 'edit-employee', params: {employee_id:employee_id}}" 
             class="btn-floating btn-large red">
-                <i class="fa fa-plus"></i>
+                <i class="fa fa-pencil"></i>
             </router-link>
         </div>
         
@@ -65,7 +65,7 @@ export default {
                     db.collection('employees').where('employee_id', '==', this.$route.params.employee_id).get().then((querySnapshot) => {
                         querySnapshot.forEach((doc) => {
                         doc.ref.delete();
-                        this.$router.push('/')
+                        this.$router.push('/dash')
                     })
                 })
             }

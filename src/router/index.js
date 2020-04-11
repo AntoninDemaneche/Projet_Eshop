@@ -8,7 +8,7 @@ import Dashboard from "../components/Dashboard.vue";
 import NewEmployee from "../components/NewEmployee.vue";
 import ViewEmployee from "../components/ViewEmployee.vue";
 import EditEmployee from "../components/EditEmployee.vue";
-
+import Bordeaux from "../views/Bordeaux.vue";
 
 import * as firebase from "firebase/app";
 import "firebase/auth";
@@ -20,6 +20,11 @@ const routes = [
     path: "/home",
     name: "home",
     component: Home
+  },
+  {
+    path: "/bordeaux",
+    name: "bordeaux",
+    component: Bordeaux
   },
   {
     path: "/secret",
