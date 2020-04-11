@@ -1,50 +1,24 @@
 <template>
   <div id="app">
-      <router-link to="/home">Home</router-link> |
-      <router-link to="/about">About</router-link> |
-      <router-link to="/register">Register</router-link> |
-      <router-link to="/login">Login</router-link> |
-      <router-link to="/secret">Secret</router-link> |
-      <router-link to="/dash">dash</router-link>|
-      <router-link to="/bordeaux">Bordeaux</router-link> |
-      <top-header></top-header>
-    <router-view />
+    <Navbar />
+    <div class="container">
+      <router-view/>
+    </div>
   </div>
 </template>
 
 <script>
-import Header from "./components/Top-Header";
+import Navbar from './components/Navbar';
 export default {
-
+  name: 'app',
   components: {
-    "top-header": Header,
-  },
-  data() {
-    return {
-    };
-  },
-};
-
-
-
-</script>  
-
-<style lang="scss">
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+    Navbar,
   }
 }
+</script>
+
+<style>
+  nav {
+    margin-bottom:10px;
+  }
 </style>

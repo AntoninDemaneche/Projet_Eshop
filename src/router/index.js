@@ -1,14 +1,13 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
-import Register from "../views/Register.vue";
-import Login from "../views/Login.vue";
-import Secret from "../views/Secret.vue";
 import Dashboard from "../components/Dashboard.vue";
 import NewEmployee from "../components/NewEmployee.vue";
 import ViewEmployee from "../components/ViewEmployee.vue";
 import EditEmployee from "../components/EditEmployee.vue";
 import Bordeaux from "../views/Bordeaux.vue";
+import Login from '../components/Login';
+import Register from '../components/Register';
 
 import * as firebase from "firebase/app";
 import "firebase/auth";
@@ -22,17 +21,6 @@ const routes = [
     component: Home
   },
   {
-    path: "/bordeaux",
-    name: "bordeaux",
-    component: Bordeaux
-  },
-  {
-    path: "/secret",
-    name: "secret",
-    component: Secret,
-    meta: { requiresAuth: true }
-  },
-  {
     path: "/login",
     name: "login",
     component: Login
@@ -43,11 +31,13 @@ const routes = [
     component: Register
   },
   {
+    path: "/bordeaux",
+    name: "bordeaux",
+    component: Bordeaux
+  },
+  {
     path: "/about",
     name: "about",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/About.vue")
   },
