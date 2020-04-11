@@ -33,9 +33,6 @@ export default {
 
         }
     },
-    //firestore : {
-    //    employees : db.collection('employees')
-    //},
     firestore() {
         db.collection('employees').orderBy('dept').get().then(
             querySnapshot => {
