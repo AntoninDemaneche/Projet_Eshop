@@ -2,7 +2,11 @@
   <div id="one_City">
       <h1 class="collection with-header center">Bienvenue à {{name}} :</h1>
       <form @submit.prevent="like" class="col s12">
-          <button type="submit" class="btn">Like</button>
+        <div class="collection-item">
+              <img src="" alt="" class="img-content">
+              <p class="sign">Par Anto</p>
+          </div>
+          <button type="submit" class="btn" v-if="isLoggedIn">Like</button>
           <router-link to="/city"><button class="grey btn ">Back</button></router-link>
       </form>
   </div>

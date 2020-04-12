@@ -26,7 +26,8 @@
           </div>
           <button type="submit" class="btn" v-if="isLoggedIn">Like</button>
           <router-link to="/city"><button class="grey btn ">Back</button></router-link>
-          <button class="btn green">Upload</button>
+          <v-btn raised class="primary">Upload</v-btn>
+          <input type="file">
       </form>
   </div>
 </template>
@@ -44,8 +45,8 @@ export default {
 }
 
 .img-content {
- width: 700px;
- height: 500px;
+ width: 70%;
+ height: 50%;
 }
 
 .post {
