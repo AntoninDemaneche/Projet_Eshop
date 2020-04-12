@@ -1,8 +1,6 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-   <router-link to="/dash">yo</router-link>
+  <div id="home">
+    
   </div>
 </template>
 
@@ -15,3 +13,9 @@ export default {
   }
 }
 </script>
+
+<style>
+#home {
+  background-color: green;
+}
+</style>

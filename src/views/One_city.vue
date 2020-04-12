@@ -1,8 +1,9 @@
 <template>
   <div id="one_City">
-      <h1 class="collection with-header">{{name}}</h1>
+      <h1 class="collection with-header center">Bienvenue à {{name}} :</h1>
       <form @submit.prevent="like" class="col s12">
           <button type="submit" class="btn">Like</button>
+          <router-link to="/city"><button class="grey btn ">Back</button></router-link>
       </form>
   </div>
 </template>
@@ -31,17 +32,23 @@ export default {
                 })
             })
     },
-    like () {
+    methods : {
+      like () {
       db.collection('city').where('name', '==', this.$route.params.name).get().then((querySnapshot) => {
         querySnapshot.forEach((doc) =>{
           doc.ref.update({
             nb_like: this.nb_like + 1,
+            name:this.name,
+            img: this.img,
+            nb_photo: this.nb_photo,
           })
           .then(() => {
             this.$router.push({name:'one_city', params: { name: this.name }})
           })
         })
       })
+
+    }
 
     }
 }   

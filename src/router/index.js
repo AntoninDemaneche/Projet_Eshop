@@ -7,6 +7,7 @@ import ViewEmployee from "../components/ViewEmployee.vue";
 import EditEmployee from "../components/EditEmployee.vue";
 import One_city from "../views/One_city.vue";
 import City from "../views/City.vue";
+import Lyon from "../views/Lyon.vue"
 import Login from '../components/Login';
 import Register from '../components/Register';
 
@@ -21,9 +22,11 @@ let router = new Router({
       path: "/home",
       name: "home",
       component: Home,
-      meta: {
-        requiresGuest: true
-      }
+    },
+    {
+      path: "/lyon",
+      name: "lyon",
+      component: Lyon,
     },
     {
       path: "/login",

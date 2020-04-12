@@ -2,7 +2,7 @@
   <nav>
       <div class="nav-wrapper green">
         <div class="container">
-          <router-link to="/dash" class="brand-logo">Mega Site</router-link> 
+          <router-link to="/home" class="brand-logo">Mega Site</router-link> 
           <ul class="right">
             <li v-if="isLoggedIn"><span class="email black-text">{{currentUser}}</span></li>
             <li v-if="isLoggedIn"><router-link to="/dash">Dashboard</router-link></li>
