@@ -5,7 +5,7 @@ import Dashboard from "../components/Dashboard.vue";
 import NewEmployee from "../components/NewEmployee.vue";
 import ViewEmployee from "../components/ViewEmployee.vue";
 import EditEmployee from "../components/EditEmployee.vue";
-import Bordeaux from "../views/Bordeaux.vue";
+import One_city from "../views/One_city.vue";
 import City from "../views/City.vue";
 import Login from '../components/Login';
 import Register from '../components/Register';
@@ -42,9 +42,9 @@ let router = new Router({
       }
     },
     {
-      path: "/bordeaux",
-      name: "bordeaux",
-      component: Bordeaux,
+      path: "/one_city",
+      name: "one_city",
+      component: One_city,
       meta: {
         requiresGuest: true
       }
@@ -54,14 +54,6 @@ let router = new Router({
       name: "city",
       component: City,
       props: true,
-    },
-    {
-      path: "/city",
-      name: "city",
-      component: City,
-      meta: {
-        requiresAuth: true
-      }
     },
     {
       path: "/about",
