@@ -6,7 +6,9 @@
          v-bind:key="city.id" class="collection-item">
             <div class="chip">{{city.name}}</div>
             Il y actuellement {{city.nb_like}} personne qui on aimée cette page !
-            Il y a actuellement {{city.nb_img}} photos de cette ville !
+            Il y a actuellement {{city.nb_img}} photos de cette ville ! 
+            <br>
+             <img class="ml-auto mr-auto" style="width: 30%;height: 280px center;"  v-bind:src="city.img"/>
             <router-link class="secondary-content" 
             v-bind:to="{name: 'one_city', 
             params: {name: city.name}}">
