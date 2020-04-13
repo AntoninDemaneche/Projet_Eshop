@@ -48,9 +48,6 @@ let router = new Router({
       path: "/one_city",
       name: "one_city",
       component: One_city,
-      meta: {
-        requiresGuest: true
-      }
     },
     {
       path: "/city",
@@ -120,7 +117,7 @@ router.beforeEach((to, from, next) => {
   } else if(to.matched.some(record => record.meta.requiresGuest)) {
     if(firebase.auth().currentUser) {
       next({
-        path:'/dash',
+        path:'/home',
         query: {
           redirect: to.fullPath
         }

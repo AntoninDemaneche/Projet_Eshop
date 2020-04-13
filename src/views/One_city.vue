@@ -1,19 +1,25 @@
 <template>
   <div id="one_City">
       <h1 class="collection with-header center">Bienvenue à {{name}} :</h1>
-      <form @submit.prevent="like" class="col s12">
+      <form class="post ogin card-panel gray white-text center">
         <div class="collection-item">
               <img src="" alt="" class="img-content">
-              <p class="sign">Par Anto</p>
+              <p class="sign">{{auth}}</p>
           </div>
           <button type="submit" class="btn" v-if="isLoggedIn">Like</button>
           <router-link to="/city"><button class="grey btn ">Back</button></router-link>
+          <button class="btn green" v-if="isLoggedIn">Upload</button>
+          <input 
+          type="file"
+          class="form-control"
+          v-if="isLoggedIn">
       </form>
   </div>
 </template>
 
 <script>
 import {db} from "../main.js";
+import firebase from 'firebase'
 export default {
     name: 'one_city',
     data () {
@@ -38,26 +44,32 @@ export default {
     },
     methods : {
       like () {
-      db.collection('city').where('name', '==', this.$route.params.name).get().then((querySnapshot) => {
-        querySnapshot.forEach((doc) =>{
-          doc.ref.update({
-            nb_like: this.nb_like + 1,
-            name:this.name,
-            img: this.img,
-            nb_photo: this.nb_photo,
-          })
-          .then(() => {
-            this.$router.push({name:'one_city', params: { name: this.name }})
-          })
-        })
-      })
-
+       return {
+         nb_like: this.nb_like + 1
+       }
     }
-
+  },
+  created() {
+    if (firebase.auth().currentUser) {
+      this.isLoggedIn = true;
+      this.currentUser = firebase.auth().currentUser.email;
     }
+  }
 }   
 </script>
 
 <style>
+.sign {
+    text-align: center;
+    margin-left: 300px;
+}
 
+.img-content {
+ width: 70%;
+ height: 50%;
+}
+
+.post {
+    margin: 100px;
+}
 </style>

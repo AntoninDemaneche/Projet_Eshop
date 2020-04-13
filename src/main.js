@@ -7,6 +7,7 @@ import firebase from "firebase/app";
 import axios from "axios";
 import 'firebase/firestore';
 import { firestorePlugin } from 'vuefire'
+import 'firebase/storage'
 
 
 Vue.use(firestorePlugin)

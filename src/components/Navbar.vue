@@ -4,11 +4,10 @@
         <div class="container">
           <router-link to="/home" class="brand-logo">Mega Site</router-link> 
           <ul class="right">
-            <li v-if="isLoggedIn"><span class="email black-text">{{currentUser}}</span></li>
-            <li v-if="isLoggedIn"><router-link to="/dash">Dashboard</router-link></li>
+            <li v-if="isLoggedIn"><span class="email dark-green-text">{{currentUser}}</span></li>
             <li v-if="!isLoggedIn"><router-link to="/login">Login</router-link></li>
             <li v-if="!isLoggedIn"><router-link to="/register">Register</router-link></li>
-            <li v-if="!isLoggedIn"><router-link to="/City">Villes</router-link></li>
+            <li><router-link to="/City">Villes</router-link></li>
             <li v-if="isLoggedIn"><button v-on:click="logout" class="btn black">Logout</button></li>
             
           </ul>   
@@ -19,31 +18,31 @@
 
 <script>
 import firebase from 'firebase';
-export default {
-  name: 'navbar',
-  data() {
-    return {
-      isLoggedIn: false,
-      currentUser: false
-    };
-  },
-  created() {
-    if (firebase.auth().currentUser) {
-      this.isLoggedIn = true;
-      this.currentUser = firebase.auth().currentUser.email;
+  export default {
+    name: 'navbar',
+    data() {
+      return {
+        isLoggedIn: false,
+        currentUser: false
+      };
+    },
+    created() {
+      if (firebase.auth().currentUser) {
+        this.isLoggedIn = true;
+        this.currentUser = firebase.auth().currentUser.email;
+      }
+    },
+    methods: {
+      logout: function() {
+        firebase
+          .auth()
+          .signOut()
+          .then(() => {
+            this.$router.go({ path: this.$router.path });
+          });
+      }
     }
-  },
-  methods: {
-    logout: function() {
-      firebase
-        .auth()
-        .signOut()
-        .then(() => {
-          this.$router.go({ path: this.$router.path });
-        });
-    }
-  }
-};
+  };
 </script>
 
 <style scoped>
